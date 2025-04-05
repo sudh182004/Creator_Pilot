@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trending Content Ideas</title>
+  <style>
+    body {
+      background-color: #f3f4f6;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #111827;
+      margin-bottom: 30px;
+    }
+
+    .ideas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .idea-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .idea-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .idea-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .idea-desc {
+      font-size: 14px;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✨ Trending Content Ideas</h1>
+
+  <div class="ideas-grid" id="ideaContainer">
+    <!-- Ideas will be injected here -->
+  </div>
+
+  <script>
+    async function fetchTrendingIdeas() {
+      const response = await fetch('/api/get-trending-ideas'); // Django endpoint
+      const data = await response.json();
+
+      const container = document.getElementById('ideaContainer');
+      container.innerHTML = '';
+
+      data.ideas.forEach(idea => {
+        const card = document.createElement('div');
+        card.className = 'idea-card';
+
+        const title = document.createElement('div');
+        title.className = 'idea-title';
+        title.textContent = idea.title;
+
+        const desc = document.createElement('div');
+        desc.className = 'idea-desc';
+        desc.textContent = idea.description;
+
+        card.appendChild(title);
+        card.appendChild(desc);
+        container.appendChild(card);
+      });
+    }
+
+    fetchTrendingIdeas();
+  </script>
+
+</body>
+</html>

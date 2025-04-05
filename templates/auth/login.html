@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "auth/style.css" %}">
+{% endblock %}
+{% block main %}
+
+<div class="main"></div>
+<div class="form-container">
+    <p class="title">Login</p>
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="" required>
+            <div class="forgot">
+                <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
+            </div>
+        </div>
+        <button class="sign">Sign in</button>
+    </form>
+
+    <!-- Dynamic Message Section -->
+    {% if error_message %}
+    <div class="alert-message">
+        {{ error_message }}
+    </div>
+    {% endif %}
+
+    <p class="signup">Don't have an account?
+        <a rel="noopener noreferrer" href="{% url "register" %}" class="">Sign up</a>
+    </p>
+</div>
+
+{% endblock %}

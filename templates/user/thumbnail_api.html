@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Thumbnail Search</title>
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Background Particle Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            z-index: -1;
+            animation: moveParticles 10s infinite alternate linear;
+        }
+        
+        /* Floating Bubbles */
+        .bubble {
+            position: fixed;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatUp 8s infinite ease-in-out;
+        }
+
+        /* Random Positioning */
+        .bubble:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 6s; animation-delay: 1s; }
+        .bubble:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-duration: 7s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 50%; width: 60px; height: 60px; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(4) { left: 70%; width: 45px; height: 45px; animation-duration: 9s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 90%; width: 55px; height: 55px; animation-duration: 10s; animation-delay: 2s; }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-50vh) translateX(10px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(-10px) scale(1); opacity: 0; }
+        }
+
+        /* Moving Background Particles */
+        @keyframes moveParticles {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Main Container */
+        .container {
+            margin: 50px auto;
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 800px;
+        }
+
+        /* Smooth Fade In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #0f3460;
+        }
+
+        #imageGallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+        }
+
+        /* button */
+
+.button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #DC2626;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #fff;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background: transparent;
+            transition: left 0.3s ease;
+            padding-top: 60px;
+            box-shadow: 0.5px 0 5px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .sidebar a:hover {
+            background: #575757;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 1100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            padding: 10px;
+            background: black;
+            color: gray;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Sidebar -->
+    <div class="menu-icon" onclick="openSidebar()">&#9776;</div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    
+    <div class="sidebar" id="sidebar">
+        <a href="trendbot.html">Home</a>
+        <a href="AI_Growth_Tips.html">AI Growth and Tips</a>
+        <a href="Best_Posting_Time.html">Best Posting time</a>
+        <a href="somgs.html">Songs Finder</a>
+        <a href="trending_content_ideas.html">Content Ideas</a>
+        <a href="Seo_Hashtag_Generator.html">SEO & Hashtag Generator</a>
+    </div>
+    
+    <h1>YouTube Thumbnail Finder</h1>
+    <input type="text" id="searchInput" placeholder="Enter search keyword (e.g., food, gaming)" />
+    <button class="button" onclick="fetchImages()">Search</button>
+    <div id="imageGallery"></div>
+
+    <footer>
+        © 2025 CreatorPilot. All rights reserved.
+    </footer>
+
+    <script>
+
+        function openSidebar() {
+            document.getElementById("sidebar").style.left = "0";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.left = "-250px";
+            document.getElementById("overlay").style.display = "none";
+        }
+        
+        async function fetchImages() {
+            const userQuery = document.getElementById("searchInput").value.trim();
+            if (!userQuery) {
+                alert("Please enter a keyword!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/fetch-images/?q=${encodeURIComponent(userQuery)}`);
+                const images = await response.json();
+
+                const gallery = document.getElementById("imageGallery");
+                gallery.innerHTML = ""; // Clear previous images
+
+                if (images.length > 0) {
+                    images.forEach(imgUrl => {
+                        const imgContainer = document.createElement("div");
+                        imgContainer.classList.add("image-container");
+                        imgContainer.innerHTML = `<img src="${imgUrl}" alt="Image">`;
+                        gallery.appendChild(imgContainer);
+                    });
+                } else {
+                    gallery.innerHTML = "<p>No images found.</p>";
+                }
+            } catch (error) {
+                console.error("Error fetching images:", error);
+            }
+        }
+    </script>
+</body>
+</html>

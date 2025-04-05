@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "auth/style.css" %}">
+{% endblock %}
+{% block main %}
+<div class="form-container">
+	<p class="title">Sign Up</p>
+	<form class="form" method="POST">
+        {% csrf_token %}
+		<div class="input-group">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" placeholder="" required>
+		</div>
+		<div class="input-group">
+			<label for="username">Email</label>
+			<input type="text" name="email" id="username" placeholder="" required>
+		</div>
+		<div class="input-group">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" placeholder="" required>
+
+		</div>
+        <div class="c-pass">
+		<div class="input-group">
+			<label for="c-password">Confirm Password</label>
+			<input type="password" name="confirm-password" id="password" placeholder="" required>
+		
+		</div>
+    </div>
+		<button class="sign">Sign Up</button>
+	</form>
+	<p class="signup">Don't have an account?
+		<a rel="noopener noreferrer" href="{% url "login" %}" class="">Sign in</a>
+	</p>
+    {% if messages %}
+    <div class="alert-message">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

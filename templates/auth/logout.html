@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'auth/style.css' %}">
+{% endblock %}
+
+{% block main %}
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+            <img class="rounded-t-lg " src="https://cdn4.iconfinder.com/data/icons/users-people/200/FAREWELL-1--FAREWELL-PRODUCT-GOODBYE-BYE-SAD-TEAR-DROP-CAT-BALLOONS-FLY-LEAVE-LOG-OUT-GO-512.png" alt="Logout Icon" />
+        </a>
+        <div class="p-5 text-center">
+            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Are you sure you want to log out?</p>
+            <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Log Out
+            </button>
+        </div>
+        <p class="signup bg-black p-2">
+            <a rel="noopener noreferrer" href="{% url "home" %}" class="">No? Back to home</a>
+        </p>
+    </div>
+
+</form>
+{% endblock %}

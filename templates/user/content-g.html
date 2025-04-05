@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Content Growth Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000 !important;
+            color: white;
+            position: relative;
+            overflow: auto !important;  /* Enable scrolling */
+            min-height: 100vh;  /* Ensure full page height */
+        }
+        
+
+        /* Sidebar */
+        #sidebar {
+            background-color: rgba(0, 0, 0, 0); /* Fully Transparent */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Sidebar Options */
+        .sidebar-option {
+            display: block;
+            padding: 12px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        /* Modern Hover Effect */
+        .sidebar-option:hover {
+            background: rgba(255, 255, 255, 0.871);
+            transform: scale(1.05);
+        }
+
+        /* Fix Overlapping Issue */
+        #sidebar ul {
+            margin-top: 4rem;  /* Push options below menu icon */
+        }
+
+        /* Transparent Menu Button */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            z-index: 100;
+        }
+
+        /* Menu Button Hover */
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Background Particle Effect */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.4;  /* Increased opacity for better visibility */
+            animation: moveParticles 6s infinite alternate ease-in-out;
+        }
+
+        /* Animated Bubbles */
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;  /* Larger bubbles */
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            opacity: 0.8;  /* More visible */
+            animation: floatUp 6s infinite ease-in;
+        }
+
+        /* Randomly Position Multiple Bubbles */
+        .bubble:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 5s; }
+        .bubble:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-duration: 6s; }
+        .bubble:nth-child(3) { left: 50%; width: 60px; height: 60px; animation-duration: 7s; }
+        .bubble:nth-child(4) { left: 70%; width: 45px; height: 45px; animation-duration: 5s; }
+        .bubble:nth-child(5) { left: 90%; width: 55px; height: 55px; animation-duration: 8s; }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-50vh) scale(1.2); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Moving Background Particles */
+        @keyframes moveParticles {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen text-white p-5">
+
+<!-- Sidebar -->
+{% comment %} <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-transparent text-white shadow-lg transform -translate-x-full transition-transform">
+    <ul class="mt-16 p-5 space-y-4">  <!-- Added mt-16 for spacing -->
+        <li><a href="trendbot.html" class="sidebar-option">Home</a></li>
+        <li><a href="Best_Posting_Time.html" class="sidebar-option">Best Posting Time</a></li>
+        <li><a href="Seo_Hashtag_Generator.html" class="sidebar-option">SEO & Hashtag Generator</a></li>
+        <li><a href="songs.html" class="sidebar-option">Songs Finder</a></li>
+        <li><a href="trending_content_ideas.html" class="sidebar-option">Content Ideas</a></li>
+    </ul>
+</div> {% endcomment %}
+
+<!-- Sidebar Overlay (Click to close) -->
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
+
+<!-- Transparent Menu Button (Fixed Position) -->
+<button id="openSidebar" class="menu-btn">☰</button>
+
+
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <h2 class="text-3xl font-bold text-center animate-fadeIn">🤖 AI-Based Content Growth Tips</h2>
+    <p class="text-gray-300 mt-2 text-center">Describe your content type, platform, and goals.</p>
+
+    <textarea id="userInput" rows="4" 
+        class="w-full max-w-lg p-3 mt-4 text-gray-900 rounded-lg shadow-lg outline-none transition-transform transform hover:scale-105 focus:scale-105"
+        placeholder="Example: I make short comedy skits on Instagram and want to increase engagement."></textarea>
+
+    <button onclick="generateTips()"
+        class="w-full max-w-sm mt-4 px-6 py-3 bg-red-500 hover:bg-red-600 text-white text-lg font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95">
+        Get AI Tips
+    </button>
+    <div id="tipsResult" class="p-4 bg-gray-900 text-white rounded-lg shadow-lg mt-4 w-max h-max">
+        <!-- Processed API response will be displayed here -->
+    </div>
+ 
+    
+    <p id="tipsText" class="text-white leading-relaxed"></p>
+</div>
+
+
+ 
+
+    <script>
+        async function generateTips() {
+            const userInput = document.getElementById("userInput").value;
+            const resultDiv = document.getElementById("tipsResult");
+        
+            if (!userInput) {
+                resultDiv.innerText = "Please enter your content details.";
+                resultDiv.classList.remove("opacity-0", "translate-y-5");
+                return;
+            }
+        
+            resultDiv.innerText = "Generating tips... ⏳";
+            resultDiv.classList.remove("opacity-0", "translate-y-5");
+        
+            const apiKey = "key_cortex"; 
+            // Replace with your actual API key
+        
+            const url = "https://api.textcortex.com/v1/texts/completions";
+        
+            const payload = {
+                model: "gemini-2-0-flash",
+                n: 1,
+                max_tokens: 400,
+                text: `
+                    Generate a structured, concise content growth strategy for ${userInput}.  
+        
+                    **Response Format:**  
+                    - Title: Engaging headline summarizing the strategy.  
+                    - Key Focus Areas: 3-5 bullet points on major growth factors.  
+                    - Actionable Steps: A numbered list with concise, practical actions.  
+                    - Pro Tips: 2-3 expert-level insights for maximizing results.  
+        
+                    Keep it precise and impactful, avoiding unnecessary details.
+                `,
+            };
+        
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${apiKey}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+        
+                const data = await response.json();
+                console.log("Full API Response:", data);
+        
+                if (response.ok && data?.data?.outputs?.[0]?.text) {
+                    resultDiv.innerHTML = data.data.outputs[0].text.trim()
+                        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold formatting
+                        .replace(/\n/g, "<br>") // Line breaks for readability
+                        .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italics
+                        .replace(/(\d+)\./g, "<br><strong>$1.</strong>"); // Numbered steps bold
+                } else {
+                    console.log("Response format:", data);
+                    resultDiv.innerText = `Error: ${data.error || "Could not generate tips."}`;
+                }
+            } catch (error) {
+                resultDiv.innerText = "Network error. Please try again.";
+                console.error("Error:", error);
+            }
+        }
+        
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const openSidebarBtn = document.getElementById("openSidebar");
+        
+        openSidebarBtn.addEventListener("click", function () {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        overlay.addEventListener("click", function () {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+    </script>
+
+</body>
+</html>

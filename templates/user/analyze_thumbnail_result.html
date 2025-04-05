@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background: #eef1f5; }
+        .container { background: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .result { margin-top: 30px; }
+        .result p { font-size: 16px; margin: 10px 0; }
+        .highlight { font-size: 20px; font-weight: bold; color: #2E8B57; }
+        .back { margin-top: 30px; display: block; text-align: center; text-decoration: none; color: #333; font-weight: bold; }
+        .ai-suggestion { margin-top: 30px; background: #f9f9f9; padding: 20px; border-left: 5px solid #2E8B57; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📊 Thumbnail CTR Prediction Result</h2>
+        <div class="result">
+            <p><strong>Normalized CTR Score:</strong> {{ normalized_ctr_percent }}%</p>
+            <h3>Extracted Features:</h3>
+            <ul>
+                {% for key, value in features.items %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if ai_suggestion %}
+        <div class="ai-suggestion">
+            <h3>💡 AI Suggestions to Improve Your Thumbnail</h3>
+            <p style="white-space: pre-line;">{{ ai_suggestion }}</p>
+        </div>
+        {% endif %}
+
+        <a class="back" href="{% url 'analyze_thumbnail' %}">⬅ Analyze Another Thumbnail</a>
+    </div>
+</body>
+</html>

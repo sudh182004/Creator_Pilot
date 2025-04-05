@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO & Hashtag Generator</title>
+    <style>
+    
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+        h2 {
+           color: #2681dc; 
+           font-size: 30px;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        input, select, button {
+            margin: 10px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+        }
+
+        select, button {
+            background: black;
+            color: white;
+            border: 1px solid white;
+        }
+
+        /* button */
+
+.button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #DC2626;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #fff;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+
+
+        .results {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        /* Background Particle Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            z-index: -1;
+            animation: moveParticles 10s infinite alternate linear;
+        }
+        
+        /* Floating Bubbles */
+        .bubble {
+            position: fixed;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatUp 8s infinite ease-in-out;
+        }
+
+        /* Random Positioning */
+        .bubble:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 6s; animation-delay: 1s; }
+        .bubble:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-duration: 7s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 50%; width: 60px; height: 60px; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(4) { left: 70%; width: 45px; height: 45px; animation-duration: 9s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 90%; width: 55px; height: 55px; animation-duration: 10s; animation-delay: 2s; }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-50vh) translateX(10px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(-10px) scale(1); opacity: 0; }
+        }
+
+        /* Moving Background Particles */
+        @keyframes moveParticles {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Main Container */
+        .container {
+            margin: 50px auto;
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 800px;
+        }
+
+        /* Smooth Fade In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background: transparent;
+            transition: left 0.3s ease;
+            padding-top: 60px;
+            box-shadow: 0.5px 0 5px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .sidebar a:hover {
+            background: #575757;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 1100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            padding: 10px;
+            background: black;
+            color: gray;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Sidebar -->
+    <div class="menu-icon" onclick="openSidebar()">&#9776;</div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    
+    <div class="sidebar" id="sidebar">
+        <a href="trendbot.html">Home</a>
+        <a href="AI_Growth_Tips.html">AI Growth and Tips</a>
+        <a href="Best_Posting_Time.html">Best Posting time</a>
+        <a href="somgs.html">Songs Finder</a>
+        <a href="trending_content_ideas.html">Content Ideas</a>
+    </div>
+
+    <h2>SEO & Hashtag Generator</h2>
+    <input type="text" id="keywordInput" placeholder="Enter a keyword...">
+    <select id="platformSelect">
+        <option value="youtube">YouTube</option>
+        <option value="instagram">Instagram</option>
+    </select>
+    <br>
+    <button class="button" onclick="generateSEOData()">Generate</button>
+    <br>
+    <div class="results">
+        <h3>Generated SEO Data</h3>
+        <p id="seoTitle"></p>
+        <p id="seoDescription"></p>
+        <p id="hashtags"></p>
+    </div>
+
+    <footer>
+        © 2025 CreatorPilot. All rights reserved.
+    </footer>
+
+    <script>
+
+        function openSidebar() {
+            document.getElementById("sidebar").style.left = "0";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.left = "-250px";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        async function generateSEOData() {
+            const keyword = document.getElementById("keywordInput").value.trim();
+            const platform = document.getElementById("platformSelect").value;
+            if (!keyword) {
+                alert("Please enter a keyword!");
+                return;
+            }
+            
+            let url = "";
+            if (platform === "youtube") {
+                url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(keyword)}&type=video&key={{youtube}}`;
+            } else if (platform === "instagram") {
+                let encodedURL = "aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20veW91dHViZS92My9zZWFyY2g/cGFydD1zbmlwcGV0JnE9";
+                let apiKey = "{{instagram}}";
+                url = atob(encodedURL) + encodeURIComponent(keyword) + `&type=video&key=${apiKey}`;
+            } else {
+                url = `https://api.textcortex.com/v1/texts/completions`;
+            }
+            const TEXTCORTEX_API_KEY = "key_cortex";
+            try {
+                let options = {};
+                if (platform === "openai") {
+                    options = {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${TEXTCORTEX_API_KEY}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            model: "gemini-2-0-flash",
+                            n: 1,
+                            max_tokens: 200,
+                            text: `Create an SEO-optimized title, compelling description, and high-impact hashtags of instagram for: ${keyword}`
+                         
+
+                        })
+                    };
+                }
+                
+                const response = await fetch(url, options);
+                const data = await response.json();
+                
+                let title = "", description = "", hashtags = "";
+                if ((platform === "youtube" || platform === "instagram") && data.items) {
+                    title = data.items[0].snippet.title;
+                    description = data.items[0].snippet.description;
+                    hashtags = title
+                        .split(" ")
+                        .slice(0, 5)
+                        .map(word => `#${word.replace(/[^a-zA-Z0-9]/g, '')}`)
+                        .join(" ");
+                } else if (platform === "openai" && data.data && data.data.outputs && data.data.outputs[0]) {
+                    const aiResponse = data.data.outputs[0].text.split("\n");
+                    title = aiResponse[0];
+                    description = aiResponse[1];
+                    hashtags = aiResponse[2];
+                }
+                
+                document.getElementById("seoTitle").textContent = "Title: " + title;
+                document.getElementById("seoDescription").textContent = "Description: " + description;
+                document.getElementById("hashtags").textContent = "Hashtags: " + hashtags;
+            } catch (error) {
+                console.error("Error fetching SEO data:", error);
+                alert("Failed to fetch SEO data. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

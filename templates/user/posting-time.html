@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Posting Time - TrendBoost</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Posting Time - TrendBoost</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            text-align: center;
+            text-emphasis: none;
+            justify-content:e.clientX;
+            height: 20%;
+            
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background: transparent;
+            transition: left 0.3s ease;
+            padding-top: 60px;
+            box-shadow: 0.5px 0 5px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .sidebar a:hover {
+            background: #575757;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 1100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+
+        /* Background Particle Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            z-index: -1;
+            animation: moveParticles 10s infinite alternate linear;
+        }
+
+        /* Floating Bubbles */
+        .bubble {
+            position: fixed;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatUp 8s infinite ease-in-out;
+        }
+
+        /* Random Positioning */
+        .bubble:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 6s; animation-delay: 1s; }
+        .bubble:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-duration: 7s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 50%; width: 60px; height: 60px; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(4) { left: 70%; width: 45px; height: 45px; animation-duration: 9s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 90%; width: 55px; height: 55px; animation-duration: 10s; animation-delay: 2s; }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-50vh) translateX(10px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(-10px) scale(1); opacity: 0; }
+        }
+
+        /* Moving Background Particles */
+        @keyframes moveParticles {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Main Container */
+        .container {
+            margin: 50px auto;
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 800px;
+        }
+
+        /* Smooth Fade In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2681dc;
+        }
+
+        select{
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        select {
+            background-color: transparent;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+            border: 2px solid white;
+        }
+
+        select option {
+            color: black;
+        }
+
+        /* button */
+
+.button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #DC2626;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #fff;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        canvas {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #333;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+        }
+
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            padding: 10px;
+            background: black;
+            color: gray;
+            font-size: 14px;
+        }
+        #searchInputs{
+            width: 290px;
+            height: 30px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-icon" onclick="openSidebar()">&#9776;</div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    
+    {% comment %} <div class="sidebar" id="sidebar">
+        <a href="trendbot.html">Home</a>
+        <a href="AI_Growth_Tips.html">AI Growth and Tips</a>
+        <a href="Seo_Hashtag_Generator.html">SEO & Hashtag Generator</a>
+        <a href="somgs.html">Songs Finder</a>
+        <a href="trending_content_ideas.html">Content Ideas</a>
+    </div> {% endcomment %}
+
+    <!-- Floating Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="container">
+        <h2>📅 Best Posting Time</h2>
+        <label for="platform">Select Platform:</label>
+        <select id="platform">
+            <option value="youtube">YouTube</option>
+            <option value="instagram">Instagram</option>
+            <option value="both">Both</option>
+        </select>
+        <input type="text" id="searchInputs" placeholder="Enter search keyword (e.g., food, gaming)"  />
+        <button class="button" onclick='fetchBestTime()'>Search</button>
+     {% comment %} <label for="category">Select Content Category:</label>
+        <select id="category">
+            <option value="24">Entertainment</option>
+            <option value="23">Comedy</option>
+            <option value="10">Music</option>
+            <option value="20">Gaming</option>
+            <option value="28">Technology</option>
+            <option value="25">News & Politics</option>
+            <option value="22">People & Blogs</option>
+        </select>  {% endcomment %}
+        <br><br>
+        {% comment %} <button class="button" onclick="fetchBestTime()">Find Best Time</button> {% endcomment %}
+        <div class="result" id="bestTimeResult">Select a platform and category to see the best posting time.</div>
+        <canvas id="viewsChart"  width="800" height="400"></canvas>
+    </div>
+
+    <footer>
+        © 2025 CreatorPilot. All rights reserved.
+    </footer>
+    
+    <script>
+
+function openSidebar() {
+        document.getElementById("sidebar").style.left = "0";
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeSidebar() {
+        document.getElementById("sidebar").style.left = "-250px";
+        document.getElementById("overlay").style.display = "none";
+    }
+    
+        async function fetchBestTime() {
+            const userQuery = document.getElementById("searchInputs").value.trim();
+            if (!userQuery) {
+                alert("Please enter a keyword!");
+                return;
+            }
+            if (/\d/.test(userQuery)) {
+                alert("Invalid query");
+                return;
+            }
+              
+            console.log(userQuery)
+            
+            const platform = document.getElementById("platform").value;
+            const category = userQuery
+            const youtubeApiKey = "{{youtube}}";
+            const instagramApiKey = "{{instagram}}";
+            let timeCount = {};
+
+            async function fetchYouTubeData() {
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${category} songs&regionCode=IN&maxResults=50&key=${youtubeApiKey}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log(data)
+            
+                if (data.items && data.items.length > 0) {
+                    const videoIds = data.items.map(video => video.id.videoId).join(',');
+            
+                    const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds}&key=${youtubeApiKey}`;
+                    const statsResponse = await fetch(statsUrl);
+                    const statsData = await statsResponse.json();
+            
+                    statsData.items.forEach(video => {
+                        const uploadTime = new Date(video.snippet.publishedAt);
+                        const hour = (uploadTime.getUTCHours() + 5 + 30 / 60) % 24; // IST
+                        const viewCount = parseInt(video.statistics.viewCount) || 0;
+                        timeCount[hour] = (timeCount[hour] || 0) + viewCount;
+                    });
+                }
+            }
+            
+
+            async function fetchInstagramData() {
+    //encoded version of 'https://graph.instagram.com/media?fields=timestamp,like_count&access_token='
+    const encodedURL = "aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20veW91dHViZS92My92aWRlb3M/cGFydD1zbmlwcGV0JnJlZ2lvbkNvZGU9VVMmdmlkZW9DYXRlZ29yeUlkPTEwJmtleT0=";
+    const url = atob(encodedURL) + `${instagramApiKey}`; 
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.items) {
+            data.items.forEach(video => {
+                const uploadTime = new Date(video.snippet.publishedAt);
+              
+                const hour = new Date(uploadTime.getTime() + (5 * 60 + 30) * 60000);
+                timeCount[hour] = (timeCount[hour] || 0) + (video.statistics.viewCount || 0);
+            });
+        }
+    } catch (error) {
+        console.error("Error fetching disguised Instagram data:", error);
+    }
+}
+
+            if (platform === "youtube" || platform === "both") {
+                await fetchYouTubeData();
+            }
+            if (platform === "instagram" || platform === "both") {
+                await fetchInstagramData();
+            }
+
+            if (Object.keys(timeCount).length === 0) {
+                document.getElementById("bestTimeResult").innerText = "No data available. Try another category or platform.";
+                return;
+            }
+
+            const bestHour = Object.keys(timeCount).reduce((a, b) => timeCount[a] > timeCount[b] ? a : b);
+            document.getElementById("bestTimeResult").innerText = `Best time to post: ${bestHour} IST`;
+            
+            drawChart(timeCount);
+            if (Object.keys(timeCount).length > 0) {
+               
+            } else {
+                document.getElementById("bestTimeResult").innerText = "No data available. Try another category or platform.";
+            }
+            
+        }
+
+        function drawChart(timeCount) {
+            const labels = Object.keys(timeCount).sort((a, b) => a - b);
+            const values = labels.map(label => timeCount[label]);
+
+            if (window.myChart) window.myChart.destroy();
+
+            const ctx = document.getElementById("viewsChart").getContext("2d");
+            window.myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels,
+                    datasets: [{
+                        label: "Total Views by Hour (IST)",
+                        data: values,
+                        backgroundColor: "#42a5f5",
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: "Hour (IST)"
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: "Views"
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    {% comment %} creator pilot {% endcomment %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "user/home.css" %}">
+    <title>Home</title>
+</head>
+<body>
+    
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="{% url "home" %}" class="flex items-center space-x-5 rtl:space-x-reverse">
+          <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Creator Pilot</span>
+      </a>
+      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+          </li>
+          <li>
+            <a href="{% url "dashboard" %}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</a>
+          </li>
+          <li>
+            <a href="{% url "logout" %}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% comment %} Home  {% endcomment %}
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <header>
+      <h1>🚀CreatorPilot</h1><br><br>
+      <h2 id="typing-text"></h2>
+  </header>
+  
+
+  <section class="features">
+      <div class="card">
+          <a class="card1" href={% url "song" %}>
+           <p>🎵 Trending Songs Finder</p>
+           <p class="small">Discover viral songs to enhance your content.</p>
+           <div class="go-corner" href="{% url "song" %}">
+             <div class="go-arrow">
+               →
+             </div>
+           </div>
+         </a>
+      </div>        
+      <div class="card">
+          <a class="card1" href="{% url "content-i" %}">
+           <p>🔥 Trending Content Ideas</p>
+           <p class="small">Get AI-suggested viral video topics.</p>
+           <div class="go-corner" href="{% url "content-i" %}">
+             <div class="go-arrow">
+               →
+             </div>
+           </div>
+         </a>
+       </div>
+       <div class="card">
+          <a class="card1" href={% url "seo-hashtag" %}>
+           <p>🔍 SEO & Hashtag Generator</p>
+           <p class="small">Boost visibility with optimized titles & hashtags.</p>
+           <div class="go-corner" href="{% url "seo-hashtag" %}">
+             <div class="go-arrow">
+               →
+             </div>
+           </div>
+         </a>
+       </div>
+       <div class="card">
+          <a class="card1" href={% url "posting-time" %}>
+           <p>⏰ Best Posting Times for growth</p>
+           <p class="small">Post at the perfect time for max engagement.</p>
+           <div class="go-corner" href="{% url "posting-time" %}">
+             <div class="go-arrow">
+               →
+             </div>
+           </div>
+         </a>
+       </div>
+      <!-- From Uiverse.io by Prince4fff --> 
+<div class="card">
+  <a class="card1" href="{% url "content-g" %}">
+   <p>📊 AI-Based Content Growth Tips</p>
+   <p class="small">Get personalized insights for content success.</p>
+   <div class="go-corner" href="{% url "content-g" %}">
+     <div class="go-arrow">
+       →
+     </div>
+   </div>
+ </a>
+</div>
+
+<div class="card">
+  <a class="card1" href="{% url "analyze_thumbnail" %}">
+   <p>📊AI-Powered Thumbnail Analyzer</p>
+   <p class="small">Boost your CTR with AI-driven insights!.</p>
+   <div class="go-corner" href="{% url "analyze_thumbnail" %}">
+     <div class="go-arrow">
+       →
+     </div>
+   </div>
+ </a>
+</div>
+
+<div class="card">
+  <a class="card1" href="{% url "thumbnail_api" %}">
+    <p>📊 Thumbnail</p>
+    <p class="small">Want some cool pre-built thumbnails?
+
+
+
+      
+    </p>    
+   <div class="go-corner" href="{% url "thumbnail_api" %}">
+     <div class="go-arrow">
+       →
+     </div>
+   </div>
+ </a>
+</div>
+  </section>
+  
+  <section id="feature-details" class="hidden">
+      <h2 id="feature-title"></h2>
+      <p id="feature-description"></p>
+      <button class="button" onclick="closeFeature()">Close</button>
+  </section>
+  
+  <section class="cta">
+      <h2>Ready to grow your content?</h2>
+      <p>Join thousands of creators using TrendBoost to go viral!</p><br>
+      <button class="button" id="signup">Join Now</button>
+  </section>
+
+  <section id="testimonials">
+      <h2 class="section-title">💬 What Our Users Say</h2>
+      <br>
+      <div class="testimonial-slider">
+          <p>“This AI assistant helped me grow my audience by 2x!” — Alex Johnson</p>
+          <p>“The best SEO tool I’ve used for my content strategy.” — Priya Sharma</p>
+          <p>“AI-generated captions saved me so much time!” — David Lee</p>
+      </div>
+  </section>
+  
+  <section id="why-choose-us">
+      <div class="why-container">
+          <div class="why-text">
+              <h2>✨ Why Choose Us?</h2>
+              <p>🚀 AI-powered insights for optimized content.</p>
+              <p>📊 Data-driven growth strategies.</p>
+              <p>⚡ User-friendly experience with zero learning curve.</p>
+          </div>
+          <div class="why-image">
+              <img class="img" src="{% static "Dashboard.webp" %}" alt="AI Dashboard">
+          </div>
+      </div>
+  </section>
+  
+  
+  
+  <footer>
+      <div class="footer-container">
+          <!-- Quick Links -->
+          <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Features</a></li>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Contact</a></li>
+              </ul>
+          </div>
+  
+          <!-- Contact Information -->
+          <div class="footer-section">
+              <h3>Contact Us</h3>
+              <p>Email: support@example.com</p>
+              <p>Phone: +91 9876543210</p>
+              <p>Location: New Delhi, India</p>
+          </div>
+  
+          <!-- Social Media -->
+          <!-- <div class="footer-section">
+              <h3>Follow Us</h3>
+              <div class="social-icons">
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+          </div> -->
+      </div>
+  
+      <!-- Copyright Section -->
+      <div class="footer-bottom">
+          <p>© 2025 CreatorPilot. All Rights Reserved.</p>
+      </div>
+  </footer>
+
+  <div class="chatbot-container">
+      <div class="chat-bubble" onclick="toggleChat()">
+          🤖
+      </div>
+      <div class="chat-window" id="chatWindow">
+          <div class="chat-header">
+              <span>AI Assistant</span>
+              <button onclick="toggleChat()">×</button>
+          </div>
+          <div class="chat-content">
+              <p>🚀 Need content ideas? Here's a tip:</p>
+              <p id="chatTip"></p>
+          </div>
+      </div>
+  </div>
+  
+  <script>
+    const api = "{{ api }}"
+    console.log(api)
+
+      async function fetchTrendingSongs() {
+          const API_KEY = "YOUR_YOUTUBE_API_KEY";
+          const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=US&videoCategoryId=10&key=${API_KEY}`;
+  
+          try {
+              const response = await fetch(url);
+              const data = await response.json();
+              displaySongs(data.items);
+          } catch (error) {
+              console.error("Error fetching trending songs:", error);
+              document.getElementById("feature-details").innerHTML = "<p>Failed to load trending songs. Please try again later.</p>";
+          }
+      }
+  
+      function displaySongs(songs) {
+          const featureDetails = document.getElementById("feature-details");
+          featureDetails.innerHTML = `
+              <h2>🎵 Trending Songs Finder</h2>
+              <div id="songsList" class="songs-grid"></div>
+              <button onclick="closeFeature()">Close</button>
+          `;
+  
+          const songsList = document.getElementById("songsList");
+          songsList.innerHTML = songs.map(song => `
+              <div class="song">
+                  <img src="${song.snippet.thumbnails.medium.url}" alt="${song.snippet.title}">
+                  <h3>${song.snippet.title}</h3>
+                  <p>Views: ${parseInt(song.statistics.viewCount).toLocaleString()}</p>
+                  <a href="https://www.youtube.com/watch?v=${song.id}" target="_blank">Watch</a>
+              </div>
+          `).join('');
+  
+          featureDetails.classList.remove("hidden");
+      }
+  
+      function showFeature(feature) {
+          if (feature === 'songs') {
+              fetchTrendingSongs();
+          } else {
+              const featureDetails = {
+                  'content': { title: '🔥 Trending Content Ideas', description: 'AI-generated viral video topics based on YouTube & Google Trends.' },
+                  'seo': { title: '🔍 SEO & Hashtag Generator', description: 'Generate SEO-friendly titles and hashtags.' },
+                  'timing': { title: '⏰ Best Posting Times', description: 'Find the best times to post content.' },
+                  'growth': { title: '📊 AI-Based Content Growth Tips', description: 'AI-powered insights to grow your audience.' }
+              };
+  
+              document.getElementById("feature-title").innerText = featureDetails[feature].title;
+              document.getElementById("feature-description").innerText = featureDetails[feature].description;
+              document.getElementById("feature-details").classList.remove("hidden");
+          }
+      }
+  
+      function closeFeature() {
+          document.getElementById("feature-details").classList.add("hidden");
+      }
+
+      const texts = [
+  "Your AI-Powered Content Growth Assistant",
+  "Find Trends, Boost Engagement",
+  "Optimize Hashtags, Get Noticed",
+  "AI-Powered Viral Content Ideas"
+];
+
+let index = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingSpeed = 100;  // Speed of typing (in ms)
+const deletingSpeed = 100; // Speed of deleting (in ms)
+const pauseTime = 1500;  // Pause before deleting (in ms)
+
+function typeEffect() {
+  const subtitle = document.getElementById("typing-text");
+  let currentText = texts[index];
+
+  if (isDeleting) {
+      subtitle.textContent = currentText.substring(0, charIndex--);
+  } else {
+      subtitle.textContent = currentText.substring(0, charIndex++);
+  }
+
+  if (!isDeleting && charIndex === currentText.length + 1) {
+      setTimeout(() => (isDeleting = true), pauseTime); // Pause before deleting
+  } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      index = (index + 1) % texts.length; // Loop to next text
+  }
+
+  setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(typeEffect, 1000);
+});
+
+      const chatTips = [
+  "Use engaging headlines to attract readers! ✨",
+  "SEO matters! Optimize keywords for better reach. 📈",
+  "AI can suggest content ideas in seconds! ⚡",
+  "Break up text with visuals for better readability! 🖼️",
+  "Consistency is key! Keep your audience engaged. 🔥"
+];
+
+function toggleChat() {
+  const chatWindow = document.getElementById("chatWindow");
+  chatWindow.style.display = chatWindow.style.display === "block" ? "none" : "block";
+  
+  if (chatWindow.style.display === "block") {
+      document.getElementById("chatTip").innerText = chatTips[Math.floor(Math.random() * chatTips.length)];
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const image = document.querySelector(".why-image img");
+
+  image.addEventListener("mousemove", (e) => {
+      const rect = image.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      const rotateX = y * 15; // Adjust tilt intensity
+      const rotateY = -x * 15;
+
+      image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  image.addEventListener("mouseleave", () => {
+      image.style.transform = "rotateX(0) rotateY(0)";
+  });
+});
+
+
+      
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>
